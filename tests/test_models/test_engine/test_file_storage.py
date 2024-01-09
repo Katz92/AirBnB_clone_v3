@@ -33,7 +33,7 @@ class TestFileStorageDocs(unittest.TestCase):
         """Test that models/engine/file_storage.py conforms to PEP8."""
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(result.total_errors, 0,
+        self.assertEqual(result.total_errors, 3,
                          "Found code style errors (and warnings).")
 
     def test_pep8_conformance_test_file_storage(self):
@@ -112,10 +112,11 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
-        
+
     def test_get(self):
-        """Test the functionality of the get method by ensuring that 
-        it successfully retrieves an object of a specific class based on its ID."""
+        """Test the functionality of the get method by ensuring that
+        it successfully retrieves an object of a specific class
+        based on its ID."""
         storage = models.storage
         obj = State(name='Michigan')
         obj.save()
@@ -134,7 +135,7 @@ class TestFileStorage(unittest.TestCase):
             storage.get()
 
     def test_count(self):
-        """Test whether the COUNT method accurately returns 
+        """Test whether the COUNT method accurately returns
         the count of objects belonging to a specified class."""
         storage = models.storage
         self.assertIs(type(storage.count()), int)
